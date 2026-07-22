@@ -1,0 +1,28 @@
+name: Sync Data Google Sheets
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+jobs:
+  run-python-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: pip install gspread oauth2client pandas
+
+      - name: Buat file creds.json dari Secret GitHub
+        run: |
+          echo '${{ secrets.GCP_CREDS_JSON }}' > creds.json
+
+      - name: Jalankan Skrip Python
+        run: python proses_data.py
