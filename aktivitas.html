@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aktivitas Harian - SMARTDASH Astra Infra</title>
+    <!-- Google Fonts: Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif !important;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: #173B45;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* SIDEBAR KIRI */
+        .sidebar {
+            width: 280px;
+            background-color: #ffffff;
+            border-right: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 24px 20px;
+            height: 100vh;
+        }
+
+        .brand-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .brand-logo {
+            max-width: 130px;
+            height: auto;
+        }
+
+        .menu-section {
+            margin-top: 24px;
+        }
+
+        .menu-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #94a3b8;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .menu-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #475569;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .menu-item:hover {
+            background-color: #f1f5f9;
+            color: #173B45;
+        }
+
+        .menu-item.active {
+            background-color: #fff1eb;
+            color: #FF8225;
+            font-weight: 600;
+        }
+
+        /* USER PROFILE DI BAWAH */
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-top: 16px;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            background-color: #FF8225;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .user-info h4 {
+            font-size: 13px;
+            font-weight: 700;
+            color: #173B45;
+        }
+
+        .user-info p {
+            font-size: 11px;
+            color: #64748b;
+        }
+
+        /* KONTEN UTAMA */
+        .main-content {
+            flex: 1;
+            padding: 32px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-title h1 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #173B45;
+        }
+
+        .page-title p {
+            font-size: 13px;
+            color: #64748b;
+            margin-top: 4px;
+        }
+
+        .live-clock {
+            background: #ffffff;
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            font-size: 13px;
+            font-weight: 600;
+            color: #173B45;
+        }
+
+        /* KARTU TABEL */
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .card-header h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #173B45;
+        }
+
+        /* TABEL DATA */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 13px;
+        }
+
+        th {
+            background-color: #f8fafc;
+            color: #475569;
+            font-weight: 600;
+            padding: 12px 16px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #f1f5f9;
+            color: #1e293b;
+        }
+
+        tr:hover td {
+            background-color: #f8fafc;
+        }
+
+        .badge {
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .badge-dm {
+            background-color: #e0f2fe;
+            color: #0369a1;
+        }
+
+        .badge-komentar {
+            background-color: #fef3c7;
+            color: #b45309;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="brand-container">
+            <img src="assets/Logo.svg" alt="Astra Infra Logo" class="brand-logo">
+            
+            <div class="menu-section">
+                <div class="menu-label">Application</div>
+                <div class="menu-list">
+                    <a href="dashboard.html" class="menu-item">
+                        <img src="assets/Dashboard.svg" alt="Icon" width="18"> Dashboard
+                    </a>
+                    <a href="index.html" class="menu-item">
+                        <img src="assets/calendar.svg" alt="Icon" width="18"> Timeline & Log
+                    </a>
+                    <a href="#" class="menu-item">
+                        <img src="assets/Profil.svg" alt="Icon" width="18"> Users Management
+                    </a>
+                </div>
+            </div>
+
+            <div class="menu-section">
+                <div class="menu-label">Others</div>
+                <div class="menu-list">
+                    <a href="aktivitas.html" class="menu-item active">
+                        <img src="assets/Aktivitas.svg" alt="Icon" width="18"> Aktivitas Harian
+                    </a>
+                    <a href="#" class="menu-item">
+                        <img src="assets/message.svg" alt="Icon" width="18"> Pesan & Komplain
+                    </a>
+                    <a href="#" class="menu-item">
+                        <img src="assets/Setting.svg" alt="Icon" width="18"> Settings
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="user-profile">
+            <div class="user-avatar">ZA</div>
+            <div class="user-info">
+                <h4>Achmad Zaenudin</h4>
+                <p>Corporate Communications</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- KONTEN UTAMA -->
+    <main class="main-content">
+        <div class="page-header">
+            <div class="page-title">
+                <h1>Aktivitas Harian</h1>
+                <p>Log data mentah Direct Message (DM) dan Komentar masuk secara real-time.</p>
+            </div>
+            <div class="live-clock" id="liveClock">
+                Memuat Waktu...
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h3>Tabel Data Mentah (DM & Komentar)</h3>
+            </div>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Waktu Masuk</th>
+                            <th>Tipe</th>
+                            <th>Pengirim / Akun</th>
+                            <th>Isi Pesan / Komentar</th>
+                            <th>Kategori</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rawDataTable">
+                        <!-- Data akan diisi otomatis menggunakan JavaScript dengan waktu terbaru -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Fungsi untuk menampilkan jam dan tanggal real-time
+        function updateClock() {
+            const now = new Date();
+            const options = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            document.getElementById('liveClock').innerText = now.toLocaleDateString('id-ID', options) + ' WIB';
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Simulasi data mentah DM & Komentar dengan tanggal/waktu otomatis berjalan
+        const rawData = [
+            { type: 'DM', sender: '@rizky_09', text: 'Min, informasi tarif tol Tangerang-Merak terbaru golongan 1 berapa ya?', category: 'Lalu Lintas' },
+            { type: 'Komentar', sender: '@dewi_lestari', text: 'Exit tol Cikupa agak padat tadi sore, mohon info perbaikannya.', category: 'Fasilitas' },
+            { type: 'DM', sender: '@budi_santoso99', text: 'Struk digital transaksi saya kemarin belum masuk di email, mohon bantuannya.', category: 'Struk Digital' },
+            { type: 'Komentar', sender: '@siti_aminah', text: 'Terima kasih pelayanannya, petugas rest area sangat membantu.', category: 'Fasilitas' },
+            { type: 'DM', sender: '@hendra_pratama', text: 'Apakah ada rekayasa lalu lintas menjelang akhir pekan ini di KM 45?', category: 'Lalu Lintas' }
+        ];
+
+        const tableBody = document.getElementById('rawDataTable');
+        
+        // Generate tanggal mundur beberapa menit dari sekarang agar terlihat dinamis dan terbaru
+        rawData.forEach((item, index) => {
+            const dateObj = new Date(Date.now() - index * 1000 * 60 * 15); // selisih 15 menit per baris
+            const formattedDate = dateObj.toLocaleDateString('id-ID', { day: '2-digit', month: '2-digit', year: 'numeric' }) + ' ' + dateObj.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+
+            const badgeClass = item.type === 'DM' ? 'badge-dm' : 'badge-komentar';
+
+            const row = `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${formattedDate} WIB</td>
+                    <td><span class="badge ${badgeClass}">${item.type}</span></td>
+                    <td><strong>${item.sender}</strong></td>
+                    <td>${item.text}</td>
+                    <td>${item.category}</td>
+                </tr>
+            `;
+            tableBody.innerHTML += row;
+        });
+    </script>
+</body>
+</html>
