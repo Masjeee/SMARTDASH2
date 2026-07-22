@@ -575,59 +575,24 @@ async function ambilDataRealtime() {
 }
 
 // Update Angka dan Grafik Sesuai Hasil Filter
-function updateDashboardUI(rows) {
-    let lalin = 0, fasilitas = 0, struk = 0;
-    let positif = 0, netral = 0, negatif = 0;
-    let dateCounts = {};
-
-    rows.forEach(r => {
-        // Cek berbagai variasi nama kolom untuk Kategori
-        let kat = (r.Kategori || r.kategori || r.Category || "").toLowerCase();
-        
-        // Cek berbagai variasi nama kolom untuk Sentimen/Tonality
-        let sen = (r.Sentimen || r.sentimen || r.Tonality || r.tonality || r.Tone || "").toLowerCase();
-
-        // Hitung Kategori
-        if(kat.includes('lalu lintas') || kat.includes('lalin')) lalin++;
-        else if(kat.includes('fasilitas')) fasilitas++;
-        else if(kat.includes('struk')) struk++;
-
-        // Hitung Sentimen (mencakup positif, netral, negatif, serta istilah apresiasi/komplain)
-        if(sen.includes('positif') || sen.includes('apresiasi')) positif++;
-        else if(sen.includes('netral') || sen.includes('tanya') || sen.includes('info')) netral++;
-        else if(sen.includes('negatif') || sen.includes('komplain')) negatif++;
-
-        // Hitung Tanggal untuk Line Chart
-        let dt = r.Tanggal || r.tanggal || r.Date || r.date || "";
-        if(dt) {
-            let d = dt.split('T')[0];
-            dateCounts[d] = (dateCounts[d] || 0) + 1;
-        }
-    });
-
-    // Update Angka Kartu
-    document.getElementById('val-lalin').innerText = lalin.toLocaleString('en-US');
-    document.getElementById('val-fasilitas').innerText = fasilitas.toLocaleString('en-US');
-    document.getElementById('val-struk').innerText = struk.toLocaleString('en-US');
-
-    document.getElementById('val-positif').innerText = positif.toLocaleString('en-US');
-    document.getElementById('val-netral').innerText = netral.toLocaleString('en-US');
-    document.getElementById('val-negatif').innerText = negatif.toLocaleString('en-US');
-
-    // Update Donut Chart
-    categoryChartInstance.data.datasets[0].data = [lalin, fasilitas, struk];
-    categoryChartInstance.update();
-
-    sentimentChartInstance.data.datasets[0].data = [positif, netral, negatif];
-    sentimentChartInstance.update();
-
-    // Update Line Chart
-    let sortedDates = Object.keys(dateCounts).sort();
-    let countsData = sortedDates.map(d => dateCounts[d]);
-
-    if(sortedDates.length > 0) {
-        lineChartInstance.data.labels = sortedDates;
-        lineChartInstance.data.datasets[0].data = countsData;
-        lineChartInstance.update();
-    }
-}
+document.addEventListener("DOMContentLoaded", function() {
+    // Mengambil data secara otomatis dari file data.json hasil sinkronisasi GitHub Actions
+    fetch('data.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Gagal memuat file data.json');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Data berhasil dimuat:", data);
+            
+            // Masukkan variabel data ini ke fungsi utama render dashboard kamu
+            // (Sesuaikan nama fungsi di bawah ini dengan fungsi yang sudah ada di dashboard.html kamu)
+            globalDataRows = data; 
+            updateDashboardUI(globalDataRows); // Contoh fungsi pemanggil tampilan dashboard
+        })
+        .catch(error => {
+            console.error('Terjadi kesalahan:', error);
+        });
+});
