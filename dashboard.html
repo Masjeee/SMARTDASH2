@@ -575,15 +575,38 @@ async function ambilDataRealtime() {
 }
 
 // Update Angka dan Grafik Sesuai Hasil Filter
+// Update Angka dan Grafik Sesuai Hasil Filter
 function updateDashboardUI(rows) {
-    let lalin = rows.filter(r => r.Kategori && r.Kategori.toLowerCase().includes('lalu lintas')).length;
-    let fasilitas = rows.filter(r => r.Kategori && r.Kategori.toLowerCase().includes('fasilitas')).length;
-    let struk = rows.filter(r => r.Kategori && r.Kategori.toLowerCase().includes('struk')).length;
+    let lalin = 0, fasilitas = 0, struk = 0;
+    let positif = 0, netral = 0, negatif = 0;
+    let dateCounts = {};
 
-    let positif = rows.filter(r => r.Sentimen && r.Sentimen.toLowerCase().includes('positif')).length;
-    let netral = rows.filter(r => r.Sentimen && r.Sentimen.toLowerCase().includes('netral')).length;
-    let negatif = rows.filter(r => r.Sentimen && r.Sentimen.toLowerCase().includes('negatif')).length;
+    rows.forEach(r => {
+        // Cek berbagai variasi nama kolom untuk Kategori
+        let kat = (r.Kategori || r.kategori || r.Category || "").toLowerCase();
+        
+        // Cek berbagai variasi nama kolom untuk Sentimen/Tonality
+        let sen = (r.Sentimen || r.sentimen || r.Tonality || r.tonality || r.Tone || "").toLowerCase();
 
+        // Hitung Kategori
+        if(kat.includes('lalu lintas') || kat.includes('lalin')) lalin++;
+        else if(kat.includes('fasilitas')) fasilitas++;
+        else if(kat.includes('struk')) struk++;
+
+        // Hitung Sentimen (mencakup positif, netral, negatif, serta istilah apresiasi/komplain)
+        if(sen.includes('positif') || sen.includes('apresiasi')) positif++;
+        else if(sen.includes('netral') || sen.includes('tanya') || sen.includes('info')) netral++;
+        else if(sen.includes('negatif') || sen.includes('komplain')) negatif++;
+
+        // Hitung Tanggal untuk Line Chart
+        let dt = r.Tanggal || r.tanggal || r.Date || r.date || "";
+        if(dt) {
+            let d = dt.split('T')[0];
+            dateCounts[d] = (dateCounts[d] || 0) + 1;
+        }
+    });
+
+    // Update Angka Kartu
     document.getElementById('val-lalin').innerText = lalin.toLocaleString('en-US');
     document.getElementById('val-fasilitas').innerText = fasilitas.toLocaleString('en-US');
     document.getElementById('val-struk').innerText = struk.toLocaleString('en-US');
@@ -592,25 +615,20 @@ function updateDashboardUI(rows) {
     document.getElementById('val-netral').innerText = netral.toLocaleString('en-US');
     document.getElementById('val-negatif').innerText = negatif.toLocaleString('en-US');
 
+    // Update Donut Chart
     categoryChartInstance.data.datasets[0].data = [lalin, fasilitas, struk];
     categoryChartInstance.update();
 
     sentimentChartInstance.data.datasets[0].data = [positif, netral, negatif];
     sentimentChartInstance.update();
 
-    let dateCounts = {};
-    rows.forEach(r => {
-        if(r.Tanggal) {
-            let d = r.Tanggal.split('T')[0];
-            dateCounts[d] = (dateCounts[d] || 0) + 1;
-        }
-    });
-
+    // Update Line Chart
     let sortedDates = Object.keys(dateCounts).sort();
     let countsData = sortedDates.map(d => dateCounts[d]);
 
-    lineChartInstance.data.labels = sortedDates;
-    lineChartInstance.data.datasets[0].data = countsData;
-    lineChartInstance.update();
+    if(sortedDates.length > 0) {
+        lineChartInstance.data.labels = sortedDates;
+        lineChartInstance.data.datasets[0].data = countsData;
+        lineChartInstance.update();
+    }
 }
-</script>
