@@ -2,8 +2,8 @@ name: Sync Data Google Sheets
 
 on:
   schedule:
-    - cron: '0 */6 * * *' # Berjalan otomatis setiap 6 jam sekali
-  workflow_dispatch: # Bisa dijalankan manual dari tab Actions
+    - cron: '0 */6 * * *'
+  workflow_dispatch: # Baris ini yang memunculkan tombol "Run workflow"
 
 jobs:
   run-python-script:
