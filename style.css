@@ -1,0 +1,124 @@
+/* Layout Utama yang Normal */
+.main-content {
+    margin-left: 280px;      /* Memberi ruang untuk sidebar di kiri */
+    padding: 30px;           /* Jarak dalam agar konten tidak menempel pinggir */
+    width: calc(100% - 280px);
+    height: 100vh;
+    box-sizing: border-box;
+    overflow-y: auto;        /* Halaman kanan bisa di-scroll sendiri */
+    background-color: #f8fafc;
+}
+
+body {
+    background-color: #f8fafc;
+    color: #1e293b;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: block; /* Kembalikan ke normal */
+    overflow: auto;
+}
+
+.sidebar {
+    width: 280px;
+    min-width: 280px;
+    background-color: #ffffff;
+    border-right: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ini kunci biar footer selalu di bawah */
+    padding: 24px 20px;
+    height: 100vh; /* Kunci tinggi sidebar pas satu layar */
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.02);
+    position: fixed; /* Biar tidak gerak saat konten kanan discroll */
+    top: 0;
+    left: 0;
+}
+
+.sidebar-top {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto; /* Hanya bagian ini yang akan discroll jika menu panjang */
+    flex: 1;           /* Mengambil sisa ruang antara header dan footer */
+    padding-right: 4px;
+}
+
+/* Kustomisasi scrollbar tipis agar lebih elegan */
+.sidebar-top::-webkit-scrollbar {
+    width: 4px;
+}
+.sidebar-top::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 4px;
+}
+
+.sidebar-footer {
+    border-top: 1px solid #f1f5f9;
+    padding-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-color: #ffffff; /* Biar tidak tembus pandang saat menu discroll di belakangnya */
+}
+
+/* Styling Menu Kategori */
+.menu-section {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.menu-category {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #94a3b8;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sidebar-menu li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    text-decoration: none;
+    color: #475569;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+/* Ukuran & Pengaturan Ikon SVG */
+.menu-icon {
+    width: 18px !important;
+    height: 18px !important;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+/* Hover & Active State */
+.sidebar-menu li a:hover {
+    background-color: #f1f5f9;
+    color: #0f172a;
+}
+
+.sidebar-menu li a.active {
+    background-color: #fff7ed; /* Nuansa oranye lembut Astra */
+    color: #ea580c;
+}
+
+.sidebar-menu li a span {
+    margin: 0;
+}
