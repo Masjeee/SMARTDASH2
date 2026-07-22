@@ -25,7 +25,6 @@ def sync_sheets_to_json():
         sheet_dm = spreadsheet.worksheet("DATA MENTAH DM")
         data_dm = sheet_dm.get_all_records()
         all_data.extend(data_dm)
-        print(f"Berhasil memuat {len(data_dm)} baris dari DATA MENTAH DM")
     except Exception as e:
         print(f"Catatan: Gagal memuat tab DATA MENTAH DM: {e}")
 
@@ -34,16 +33,15 @@ def sync_sheets_to_json():
         sheet_komentar = spreadsheet.worksheet("KOMENTAR")
         data_komentar = sheet_komentar.get_all_records()
         all_data.extend(data_komentar)
-        print(f"Berhasil memuat {len(data_komentar)} baris dari KOMENTAR")
     except Exception as e:
         print(f"Catatan: Gagal memuat tab KOMENTAR: {e}")
 
-    # 4. Simpan seluruh gabungan data ke file data.json
+    # 4. SIMPAN KE FILE data.json (INI YANG DIBACA OLEH DASHBOARD)
     output_filename = "data.json"
     with open(output_filename, 'w', encoding='utf-8') as f:
         json.dump(all_data, f, ensure_ascii=False, indent=4)
     
-    print(f"Total keseluruhan {len(all_data)} baris data berhasil disinkronkan ke {output_filename}")
+    print(f"Sukses! {len(all_data)} baris data disimpan ke {output_filename}")
 
 if __name__ == "__main__":
     sync_sheets_to_json()
