@@ -322,6 +322,27 @@
 </html>
 
 <script>
-    // Memasukkan langsung data total komplain yang valid ke dashboard
-    document.getElementById('total-komplain').innerText = "4,729";
+async function ambilDataRealtime() {
+    try {
+        let urlWebApps = "https://script.google.com/macros/s/AKfycbylUZmaP5Q7DESDIUhDGk3vAk6I9ioFZ78-fkZmdNbiDWX52lLhsC9DPjg9JufEkZJO/exec";
+        
+        let response = await fetch(urlWebApps);
+        let data = await response.json();
+
+        // Mengambil total komplain secara otomatis dari Google Spreadsheet
+        if(data && data.total_komplain) {
+            // Mengubah angka menjadi format ribuan dengan koma (contoh: 4,729)
+            let formattedTotal = Number(data.total_komplain).toLocaleString('en-US');
+            document.getElementById('total-komplain').innerText = formattedTotal;
+        }
+        
+    } catch (error) {
+        console.error("Gagal menarik data spreadsheet:", error);
+        // Fallback otomatis ke angka statis jika koneksi terputus
+        document.getElementById('total-komplain').innerText = "4,729";
+    }
+}
+
+// Jalankan fungsi saat halaman dimuat
+ambilDataRealtime();
 </script>
