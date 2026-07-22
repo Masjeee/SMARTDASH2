@@ -618,13 +618,25 @@
             sentimentChartInstance = new Chart(ctxSentiment, {
                 type: 'doughnut',
                 data: { 
-                    labels: ['Positif', 'Netral', 'Negatif'], 
-                    datasets: [{ 
-                        data: [0, 0, 0], 
-                        backgroundColor: ['#173B45', '#FF8225', '#B43F3F'] 
+                labels: ['Lalu Lintas', 'Fasilitas', 'Struk Digital'], 
+                datasets: [{ 
+                data: [0, 0, 0], 
+           
+                backgroundColor: ['#F8EDED', '#FF8225', '#B43F3F'],
+                borderWidth: 0,          // Ketebalan garis pemisah antar potongan donut
+                borderColor: '#ffffff'   // Warna garis pemisah antar potongan
                     }] 
                 },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } } } }
+                options: { 
+                responsive: true, 
+                maintainAspectRatio: false, 
+                plugins: { 
+                legend: { 
+                position: 'bottom', // Posisi keterangan (bisa 'top', 'bottom', 'left', 'right')
+                labels: { boxWidth: 10, font: { size: 10 } } 
+                        } 
+                    } 
+                }
             });
 
             // Mengambil data secara otomatis dari file data.json GitHub Actions
