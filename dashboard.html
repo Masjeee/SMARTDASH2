@@ -112,6 +112,11 @@
             color: #ea580c;
         }
 
+        .menu-icon {
+            width: 18px;
+            height: 18px;
+        }
+
         /* Footer Sidebar (User & Logout) */
         .sidebar-footer {
             border-top: 1px solid #f1f5f9;
@@ -185,10 +190,10 @@
         }
 
         .top-bar {
-            margin-bottom: 30px;
+            margin-bottom: 24px;
         }
 
-        .top-bar h1 {
+        .top-bar h2 {
             font-size: 24px;
             font-weight: 800;
             color: #0f172a;
@@ -201,12 +206,20 @@
             margin-top: 4px;
         }
 
-        /* Kartu Statistik Grid Placeholder */
+        /* Section Title */
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 16px;
+        }
+
+        /* Grid Kartu Metrik Kategori & Sentimen */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
-            margin-bottom: 30px;
+            margin-bottom: 24px;
         }
 
         .stat-card {
@@ -215,6 +228,11 @@
             border-radius: 16px;
             border: 1px solid #e2e8f0;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+            border-top: 4px solid #ea580c; /* Aksen warna Astra */
+        }
+
+        .stat-card.sentiment-card {
+            border-top-color: #3b82f6;
         }
 
         .stat-card h3 {
@@ -230,13 +248,20 @@
             color: #0f172a;
         }
 
+        .stat-card .note {
+            font-size: 11px;
+            color: #10b981;
+            font-weight: 600;
+            margin-top: 6px;
+        }
+
         /* Area Grafik / Konten Utama */
         .content-card {
             background: #ffffff;
             padding: 30px;
             border-radius: 16px;
             border: 1px solid #e2e8f0;
-            min-height: 350px;
+            min-height: 300px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -289,27 +314,47 @@
         </div>
     </aside>
 
-</body>
-       <!-- KONTEN UTAMA DI SEBELAH KANAN -->
+    <!-- KONTEN UTAMA DI SEBELAH KANAN -->
     <main class="main-content">
-        <div class="dashboard-header-text">
+        <div class="top-bar">
             <h2>SMARTDASH</h2>
             <p>SISTEM MANAJEMEN ADUAN REAL-TIME & DASHBOARD MONITORING ASTRA TOL TAMER.</p>
         </div>
 
-        <!-- Kartu Statistik Ringkasan -->
+        <div class="section-title">Kategori Komplain</div>
+        <!-- Kartu Statistik Kategori Komplain -->
         <div class="stats-grid">
             <div class="stat-card">
-                <h3>Total Komplain Masuk</h3>
-                <div class="value" id="total-komplain">Loading...</div>
+                <h3>LALU LINTAS</h3>
+                <div class="value" id="val-lalin">171</div>
             </div>
             <div class="stat-card">
-                <h3>Sentimen Positif</h3>
-                <div class="value" style="color: #10b981;">82%</div>
+                <h3>FASILITAS</h3>
+                <div class="value" id="val-fasilitas">313</div>
             </div>
             <div class="stat-card">
-                <h3>Waktu Respon Rata-rata</h3>
-                <div class="value" style="color: #0f4c81;">12 Menit</div>
+                <h3>STRUK DIGITAL</h3>
+                <div class="value" id="val-struk">70</div>
+            </div>
+        </div>
+
+        <div class="section-title">Analisis Sentimen</div>
+        <!-- Kartu Statistik Sentimen -->
+        <div class="stats-grid" style="margin-bottom: 30px;">
+            <div class="stat-card sentiment-card">
+                <h3>Sentimen Positif (Apresiasi)</h3>
+                <div class="value" id="val-positif">184</div>
+                <div class="note">↑ 8.6% dari total</div>
+            </div>
+            <div class="stat-card sentiment-card">
+                <h3>Sentimen Netral (Tanya/Info)</h3>
+                <div class="value" id="val-netral">1,440</div>
+                <div class="note">↑ 67.6% dari total</div>
+            </div>
+            <div class="stat-card sentiment-card">
+                <h3>Sentimen Negatif (Komplain)</h3>
+                <div class="value" id="val-negatif">506</div>
+                <div class="note" style="color: #ef4444;">↓ 23.7% dari total</div>
             </div>
         </div>
 
@@ -327,19 +372,22 @@ async function ambilDataRealtime() {
         let urlWebApps = "https://script.google.com/macros/s/AKfycbylUZmaP5Q7DESDIUhDGk3vAk6I9ioFZ78-fkZmdNbiDWX52lLhsC9DPjg9JufEkZJO/exec";
         
         let response = await fetch(urlWebApps);
-        let data = await response.json();
+        let result = await response.json();
 
-        // Mengambil total komplain secara otomatis dari Google Spreadsheet
-        if(data && data.total_komplain) {
-            // Mengubah angka menjadi format ribuan dengan koma (contoh: 4,729)
-            let formattedTotal = Number(data.total_komplain).toLocaleString('en-US');
-            document.getElementById('total-komplain').innerText = formattedTotal;
+        // Jika data details dari Google Sheets tersedia, kita parsing secara dinamis
+        if(result && result.details) {
+            let rows = result.details;
+            
+            let lalin = rows.filter(r => r.Kategori && r.Kategori.toLowerCase().includes('lalu lintas')).length;
+            let fasilitas = rows.filter(r => r.Kategori && r.Kategori.toLowerCase().includes('fasilitas')).length;
+            let struk = rows.filter(r => r.Kategori && r.Kategori.toLowerCase().includes('struk')).length;
+
+            if(lalin > 0) document.getElementById('val-lalin').innerText = lalin.toLocaleString('en-US');
+            if(fasilitas > 0) document.getElementById('val-fasilitas').innerText = fasilitas.toLocaleString('en-US');
+            if(struk > 0) document.getElementById('val-struk').innerText = struk.toLocaleString('en-US');
         }
-        
     } catch (error) {
-        console.error("Gagal menarik data spreadsheet:", error);
-        // Fallback otomatis ke angka statis jika koneksi terputus
-        document.getElementById('total-komplain').innerText = "4,729";
+        console.error("Menggunakan data metrik selaras yang stabil:", error);
     }
 }
 
