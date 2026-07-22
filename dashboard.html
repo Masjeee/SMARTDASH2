@@ -94,6 +94,7 @@
             font-weight: 600;
             border-radius: 8px;
             transition: all 0.2s ease;
+            cursor: pointer;
         }
 
         .sidebar-menu li a:hover {
@@ -109,6 +110,68 @@
         .menu-icon {
             width: 18px;
             height: 18px;
+        }
+
+        /* Submenu Filter Tanggal (Accordion) */
+        .submenu-container {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .submenu-container.open {
+            max-height: 220px;
+            margin-top: 6px;
+            margin-bottom: 6px;
+        }
+
+        .filter-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .filter-box label {
+            font-size: 10px;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+        }
+
+        .filter-box input[type="date"] {
+            width: 100%;
+            padding: 6px 8px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 11px;
+            font-family: 'Manrope', sans-serif;
+            color: #1e293b;
+            background: #ffffff;
+        }
+
+        .filter-btn {
+            background-color: #0f172a;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 7px;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-align: center;
+        }
+
+        .filter-btn:hover {
+            background-color: #ea580c;
         }
 
         /* Footer Sidebar (User & Logout) */
@@ -208,7 +271,7 @@
             margin-top: 16px;
         }
 
-        /* Grid Kartu Metrik - Bersih tanpa border warna, menggunakan efek Glow / Soft Shadow ala iPhone */
+        /* Grid Kartu Metrik - Efek Glow ala iPhone */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -299,7 +362,24 @@
                 <span class="menu-category">Application</span>
                 <ul class="sidebar-menu">
                     <li><a href="#" class="active"><img src="Dashboard.svg" alt="Dashboard" class="menu-icon"><span>Dashboard</span></a></li>
-                    <li><a href="#"><img src="calendar.svg" alt="Timeline" class="menu-icon"><span>Timeline & Log</span></a></li>
+                    
+                    <!-- MENU TIMELINE & LOG DENGAN AKORDEON SUBMENU -->
+                    <li>
+                        <a href="javascript:void(0);" id="toggleTimeline">
+                            <img src="calendar.svg" alt="Timeline" class="menu-icon">
+                            <span>Timeline & Log</span>
+                        </a>
+                    </li>
+                    <div class="submenu-container" id="timelineSubmenu">
+                        <div class="filter-box">
+                            <label>Dari Tanggal</label>
+                            <input type="date" id="startDate" value="2026-02-01">
+                            <label>Sampai Tanggal</label>
+                            <input type="date" id="endDate" value="2026-04-23">
+                            <button class="filter-btn" onclick="terapkanFilterTanggal()">Terapkan Filter</button>
+                        </div>
+                    </div>
+
                     <li><a href="#"><img src="Profil.svg" alt="Users" class="menu-icon"><span>Users Management</span></a></li>
                 </ul>
             </div>
@@ -394,11 +474,28 @@
 </html>
 
 <script>
-// Script Render Chart.js
+// Fungsi Toggle Akordeon Timeline & Log
+document.getElementById('toggleTimeline').addEventListener('click', function(e) {
+    e.preventDefault();
+    const submenu = document.getElementById('timelineSubmenu');
+    submenu.classList.toggle('open');
+});
+
+// Fungsi Tombol Terapkan Filter Tanggal
+function terapkanFilterTanggal() {
+    let start = document.getElementById('startDate').value;
+    let end = document.getElementById('endDate').value;
+    
+    alert("Menyaring data aduan dari tanggal " + start + " hingga " + end);
+    
+    // Panggil ulang fungsi fetch data dengan parameter tanggal jika diperlukan
+    ambilDataRealtime(start, end);
+}
+
+// Inisialisasi Chart.js
 document.addEventListener("DOMContentLoaded", function() {
-    // 1. Line Chart
     const ctxLine = document.getElementById('lineChart').getContext('2d');
-    new Chart(ctxLine, {
+    window.myLineChart = new Chart(ctxLine, {
         type: 'line',
         data: {
             labels: ['Feb 01', 'Feb 15', 'Mar 01', 'Mar 15', 'Apr 01', 'Apr 15', 'Apr 23'],
@@ -423,7 +520,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // 2. Donut Kategori
     const ctxCategory = document.getElementById('donutCategory').getContext('2d');
     new Chart(ctxCategory, {
         type: 'doughnut',
@@ -437,13 +533,10 @@ document.addEventListener("DOMContentLoaded", function() {
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            plugins: { 
-                legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } } 
-            }
+            plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } } }
         }
     });
 
-    // 3. Donut Sentimen
     const ctxSentiment = document.getElementById('donutSentiment').getContext('2d');
     new Chart(ctxSentiment, {
         type: 'doughnut',
@@ -457,15 +550,13 @@ document.addEventListener("DOMContentLoaded", function() {
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            plugins: { 
-                legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } } 
-            }
+            plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } } }
         }
     });
 });
 
-// Fetch Google Sheets Realtime
-async function ambilDataRealtime() {
+// Fetch Google Sheets Realtime dengan Filter Tanggal Opsional
+async function ambilDataRealtime(startDate, endDate) {
     try {
         let urlWebApps = "https://script.google.com/macros/s/AKfycbylUZmaP5Q7DESDIUhDGk3vAk6I9ioFZ78-fkZmdNbiDWX52lLhsC9DPjg9JufEkZJO/exec";
         let response = await fetch(urlWebApps);
@@ -473,6 +564,8 @@ async function ambilDataRealtime() {
 
         if(result && result.details) {
             let rows = result.details;
+            
+            // Jika rentang tanggal dipilih, kamu bisa melakukan filtering di sini berdasarkan kolom tanggal baris data
             let lalin = rows.filter(r => r.Kategori && r.Kategori.toLowerCase().includes('lalu lintas')).length;
             let fasilitas = rows.filter(r => r.Kategori && r.Kategori.toLowerCase().includes('fasilitas')).length;
             let struk = rows.filter(r => r.Kategori && r.Kategori.toLowerCase().includes('struk')).length;
