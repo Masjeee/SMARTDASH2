@@ -11,22 +11,39 @@ def sync_sheets_to_json():
     creds = ServiceAccountCredentials.from_json_keyfile_name('creds.json', scope)
     client = gspread.authorize(creds)
 
-    sheet_name = "SMART DASH 2026" # Ganti dengan nama file Google Sheets kamu
+    sheet_name = "SMART DASH 2026"
     try:
-        sheet = client.open(sheet_name).sheet1
+        spreadsheet = client.open(sheet_name)
     except Exception as e:
         print(f"Gagal membuka spreadsheet: {e}")
         return
 
-    # 3. Ambil seluruh data dalam bentuk list of dictionary
-    data_records = sheet.get_all_records()
+    all_data = []
 
-    # 4. Simpan ke file data.json agar bisa diakses oleh dashboard.html
+    # 2. Ambil data dari tab "DATA MENTAH DM"
+    try:
+        sheet_dm = spreadsheet.worksheet("DATA MENTAH DM")
+        data_dm = sheet_dm.get_all_records()
+        all_data.extend(data_dm)
+        print(f"Berhasil memuat {len(data_dm)} baris dari DATA MENTAH DM")
+    except Exception as e:
+        print(f"Catatan: Gagal memuat tab DATA MENTAH DM: {e}")
+
+    # 3. Ambil data dari tab "KOMENTAR"
+    try:
+        sheet_komentar = spreadsheet.worksheet("KOMENTAR")
+        data_komentar = sheet_komentar.get_all_records()
+        all_data.extend(data_komentar)
+        print(f"Berhasil memuat {len(data_komentar)} baris dari KOMENTAR")
+    except Exception as e:
+        print(f"Catatan: Gagal memuat tab KOMENTAR: {e}")
+
+    # 4. Simpan seluruh gabungan data ke file data.json
     output_filename = "data.json"
     with open(output_filename, 'w', encoding='utf-8') as f:
-        json.dump(data_records, f, ensure_ascii=False, indent=4)
+        json.dump(all_data, f, ensure_ascii=False, indent=4)
     
-    print(f"Berhasil menyinkronkan {len(data_records)} baris data ke {output_filename}")
+    print(f"Total keseluruhan {len(all_data)} baris data berhasil disinkronkan ke {output_filename}")
 
 if __name__ == "__main__":
     sync_sheets_to_json()
