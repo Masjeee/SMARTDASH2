@@ -143,3 +143,15 @@ body {
     letter-spacing: 0.3px;
     text-transform: none; /* Tambahkan ini agar subjudulnya mengikuti ketikan asli */
 }
+
+.brand-logo-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.brand-logo {
+    max-width: 140px; /* Sesuaikan lebar logo */
+    height: auto;
+    object-fit: contain;
+}
