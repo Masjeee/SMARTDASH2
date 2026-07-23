@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - SMARTDASH Astra Infra Toll Road Tangerang-Merak</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        :root {
+            --bg-body: #f8fafc;
+            --bg-sidebar: #ffffff;
+            --bg-card: #ffffff;
+            --text-main: #173B45;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+        }
+
+        body.dark-mode {
+            --bg-body: #0f172a;
+            --bg-sidebar: #1e293b;
+            --bg-card: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* SIDEBAR KIRI */
+        .sidebar {
+            width: 280px;
+            background-color: var(--bg-sidebar);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 24px 20px;
+            height: 100vh;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.02);
+        }
+
+        .sidebar-top {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            overflow-y: auto;
+        }
+
+        .brand-logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .brand-logo {
+            max-width: 140px;
+            height: auto;
+        }
+
+        .menu-section {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .menu-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .menu-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .menu-item:hover {
+            background-color: var(--border-color);
+            color: var(--text-main);
+        }
+
+        .menu-item.active {
+            background-color: #F8EDED;
+            color: #FF8225;
+        }
+
+        body.dark-mode .menu-item.active {
+            background-color: #332222;
+        }
+
+        .sidebar-footer {
+            border-top: 1px solid var(--border-color);
+            padding-top: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #FF8225;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .user-role {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .logout-btn {
+            width: 100%;
+            background-color: #F8EDED;
+            color: #B43F3F;
+            border: none;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* KONTEN UTAMA */
+        .main-content {
+            flex: 1;
+            padding: 30px 40px;
+            overflow-y: auto;
+            background-color: var(--bg-body);
+        }
+        
+        .top-bar {
+            margin-bottom: 24px;
+        }
+
+        .top-bar h2 {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        .top-bar p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        /* SETTINGS CARD */
+        .settings-card {
+            background: var(--bg-card);
+            border-radius: 14px;
+            border: 1px solid var(--border-color);
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+            max-width: 600px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .setting-info h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .setting-info p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .theme-toggle-btn {
+            background-color: #FF8225;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .theme-toggle-btn:hover {
+            background-color: #e06d19;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-top">
+            <div class="brand-logo-container">
+                <img src="Logo.svg" alt="Logo Smartdash" class="brand-logo">
+            </div>
+
+            <div class="menu-section">
+                <div class="menu-label">Application</div>
+                <div class="menu-list">
+                    <a href="dashboard.html" class="menu-item">
+                        <img src="Dashboard.svg" alt="Icon" width="18" height="18"> Dashboard
+                    </a>
+                    <a href="dashboard.html" class="menu-item">
+                        <img src="calendar.svg" alt="Icon" width="18" height="18"> Timeline & Log
+                    </a>
+                </div>
+            </div>
+
+            <div class="menu-section">
+                <div class="menu-label">Others</div>
+                <div class="menu-list">
+                    <a href="aktivitas.html" class="menu-item">
+                        <img src="Aktivitas.svg" alt="Icon" width="18" height="18"> Aktivitas Harian
+                    </a>
+                    <a href="pesan.html" class="menu-item">
+                        <img src="message.svg" alt="Icon" width="18" height="18"> Pesan & Komplain
+                    </a>
+                    <a href="setting.html" class="menu-item active">
+                        <img src="Setting.svg" alt="Icon" width="18" height="18"> Settings
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="user-avatar">ZA</div>
+                <div class="user-info">
+                    <span class="user-name">Achmad Zaenudin</span>
+                    <span class="user-role">Corporate Communications</span>
+                </div>
+            </div>
+            <a href="index.html" class="logout-btn">Keluar (Logout)</a>
+        </div>
+    </aside>
+
+    <!-- KONTEN UTAMA -->
+    <main class="main-content">
+        <div class="top-bar">
+            <h2>Pengaturan Sistem</h2>
+            <p>Kelola preferensi tampilan dan konfigurasi antarmuka dashboard.</p>
+        </div>
+
+        <div class="settings-card">
+            <div class="setting-info">
+                <h4>Mode Tema Tampilan</h4>
+                <p>Ubah tampilan dashboard antara mode cerah (light) atau gelap (dark).</p>
+            </div>
+            <button class="theme-toggle-btn" id="toggle-theme-btn">Aktifkan Dark Mode</button>
+        </div>
+    </main>
+
+    <script>
+        // Logika Sinkronisasi & Toggle Tema
+        const toggleBtn = document.getElementById('toggle-theme-btn');
+        
+        // Cek status tema tersimpan
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            toggleBtn.innerText = "Aktifkan Light Mode";
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                toggleBtn.innerText = "Aktifkan Light Mode";
+            } else {
+                localStorage.setItem('theme', 'light');
+                toggleBtn.innerText = "Aktifkan Dark Mode";
+            }
+        });
+    </script>
+</body>
+</html>
