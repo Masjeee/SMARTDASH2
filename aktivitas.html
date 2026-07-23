@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aktivitas Harian - Dirrect Message dan Komen Instagram</title>
+    <title>Aktivitas Harian - Direct Message dan Komen Instagram</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Roboto', !important;
+            font-family: 'Roboto', sans-serif;
         }
         
         .menu-item img {
@@ -18,6 +18,7 @@
             height: 18px;
             object-fit: contain;
         }
+        
         body {
             background-color: #f8fafc;
             color: #173B45;
@@ -236,7 +237,6 @@
 </head>
 <body>
 
-
     <aside class="sidebar">
         <div class="brand-container">
             <img src="Logo.svg" alt="Astra Infra Logo" class="brand-logo">
@@ -309,7 +309,7 @@
                         </tr>
                     </thead>
                     <tbody id="rawDataTable">
-                        <!-- Data akan diisi otomatis menggunakan JavaScript dengan waktu terbaru -->
+                        <!-- Data akan diisi otomatis menggunakan JavaScript -->
                     </tbody>
                 </table>
             </div>
@@ -317,7 +317,6 @@
     </main>
 
     <script>
-        // Fungsi untuk menampilkan jam dan tanggal real-time
         function updateClock() {
             const now = new Date();
             const options = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
@@ -326,7 +325,6 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        // Simulasi data mentah DM & Komentar dengan tanggal/waktu otomatis berjalan
         const rawData = [
             { type: 'DM', sender: '@rizky_09', text: 'Min, informasi tarif tol Tangerang-Merak terbaru golongan 1 berapa ya?', category: 'Lalu Lintas' },
             { type: 'Komentar', sender: '@dewi_lestari', text: 'Exit tol Cikupa agak padat tadi sore, mohon info perbaikannya.', category: 'Fasilitas' },
@@ -337,9 +335,8 @@
 
         const tableBody = document.getElementById('rawDataTable');
         
-        // Generate tanggal mundur beberapa menit dari sekarang agar terlihat dinamis dan terbaru
         rawData.forEach((item, index) => {
-            const dateObj = new Date(Date.now() - index * 1000 * 60 * 15); // selisih 15 menit per baris
+            const dateObj = new Date(Date.now() - index * 1000 * 60 * 15);
             const formattedDate = dateObj.toLocaleDateString('id-ID', { day: '2-digit', month: '2-digit', year: 'numeric' }) + ' ' + dateObj.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
 
             const badgeClass = item.type === 'DM' ? 'badge-dm' : 'badge-komentar';
