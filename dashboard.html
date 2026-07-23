@@ -12,7 +12,7 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Roboto', sans-serif !important;
+            font-family: 'Roboto', sans-serif;
         }
 
         body {
@@ -43,20 +43,14 @@
             overflow-y: auto;
         }
 
-        .brand-title {
-            font-size: 18px;
-            font-weight: 800;
-            color: #173B45;
-            letter-spacing: -0.5px;
+        .brand-logo-container {
+            display: flex;
+            align-items: center;
         }
 
-        .brand-subtitle {
-            font-size: 11px;
-            font-weight: 600;
-            color: #FF8225;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-top: -2px;
+        .brand-logo {
+            max-width: 140px;
+            height: auto;
         }
 
         /* Navigasi Menu */
@@ -66,7 +60,7 @@
             gap: 6px;
         }
 
-        .menu-category {
+        .menu-label {
             font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
@@ -75,14 +69,13 @@
             margin-bottom: 6px;
         }
 
-        .sidebar-menu {
-            list-style: none;
+        .menu-list {
             display: flex;
             flex-direction: column;
             gap: 4px;
         }
 
-        .sidebar-menu li a {
+        .menu-item {
             display: flex;
             align-items: center;
             gap: 12px;
@@ -96,19 +89,14 @@
             cursor: pointer;
         }
 
-        .sidebar-menu li a:hover {
+        .menu-item:hover {
             background-color: #f1f5f9;
             color: #173B45;
         }
 
-        .sidebar-menu li a.active {
+        .menu-item.active {
             background-color: #F8EDED;
             color: #FF8225;
-        }
-
-        .menu-icon {
-            width: 18px;
-            height: 18px;
         }
 
         /* Submenu Filter Tanggal (Accordion) */
@@ -116,7 +104,7 @@
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease-out;
-            padding-left: 20px;
+            padding-left: 14px;
             display: flex;
             flex-direction: column;
             gap: 8px;
@@ -151,7 +139,6 @@
             border: 1px solid #cbd5e1;
             border-radius: 6px;
             font-size: 11px;
-            font-family: 'Manrope', sans-serif;
             color: #173B45;
             background: #ffffff;
         }
@@ -250,14 +237,14 @@
         }
 
         .top-bar h2 {
-            font-size: 50px; /* Ubah angka ini untuk memperbesar/memperkecil judul */
+            font-size: 40px;
             font-weight: 800;
             color: #173B45;
             letter-spacing: -0.5px;
         }
 
         .top-bar p {
-            font-size: 22px; /* Ubah angka ini untuk subjudul */
+            font-size: 16px;
             color: #64748b;
             margin-top: 4px;
             font-weight: 600;
@@ -284,7 +271,7 @@
             padding: 20px;
             border-radius: 14px;
             border: 1px solid rgba(226, 232, 240, 0.8);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
@@ -315,7 +302,7 @@
             margin-top: 4px;
         }
 
-        /* Grid Grafik & Donut Chart */
+        /* Grid Grafik */
         .charts-grid {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr;
@@ -353,53 +340,63 @@
 <body>
     <!-- SIDEBAR -->
     <aside class="sidebar">
-    <div class="sidebar-top">
-        <div class="brand-logo-container">
-            <img src="Logo.svg" alt="Logo Smartdash" class="brand-logo">
-        </div>
+        <div class="sidebar-top">
+            <div class="brand-logo-container">
+                <img src="Logo.svg" alt="Logo Smartdash" class="brand-logo">
+            </div>
 
-        <div class="menu-section">
-            <div class="menu-label">Application</div>
-            <div class="menu-list">
-                <a href="dashboard.html" class="menu-item">
-                    <img src="Dashboard.svg" alt="Icon" width="18" height="18"> Dashboard
-                </a>
-                <a href="index.html" class="menu-item">
-                    <img src="calendar.svg" alt="Icon" width="18" height="18"> Timeline & Log
-                </a>
-                <a href="#" class="menu-item">
-                    <img src="Profil.svg" alt="Icon" width="18" height="18"> Users Management
-                </a>
+            <div class="menu-section">
+                <div class="menu-label">Application</div>
+                <div class="menu-list">
+                    <a href="dashboard.html" class="menu-item active">
+                        <img src="Dashboard.svg" alt="Icon" width="18" height="18"> Dashboard
+                    </a>
+                    <a href="index.html" class="menu-item" id="toggleTimeline">
+                        <img src="calendar.svg" alt="Icon" width="18" height="18"> Timeline & Log
+                    </a>
+                    <!-- Submenu Filter Tanggal Tersembunyi -->
+                    <div class="submenu-container" id="timelineSubmenu">
+                        <div class="filter-box">
+                            <label>Dari Tanggal</label>
+                            <input type="date" id="startDate">
+                            <label>Sampai Tanggal</label>
+                            <input type="date" id="endDate">
+                            <button class="filter-btn" onclick="terapkanFilterTanggal()">Terapkan</button>
+                        </div>
+                    </div>
+                    <a href="#" class="menu-item">
+                        <img src="Profil.svg" alt="Icon" width="18" height="18"> Users Management
+                    </a>
+                </div>
+            </div>
+
+            <div class="menu-section">
+                <div class="menu-label">Others</div>
+                <div class="menu-list">
+                    <a href="aktivitas.html" class="menu-item">
+                        <img src="Aktivitas.svg" alt="Icon" width="18" height="18"> Aktivitas Harian
+                    </a>
+                    <a href="#" class="menu-item">
+                        <img src="message.svg" alt="Icon" width="18" height="18"> Pesan & Komplain
+                    </a>
+                    <a href="#" class="menu-item">
+                        <img src="Setting.svg" alt="Icon" width="18" height="18"> Settings
+                    </a>
+                </div>
             </div>
         </div>
 
-        <div class="menu-section">
-            <div class="menu-label">Others</div>
-            <div class="menu-list">
-                <a href="aktivitas.html" class="menu-item">
-                    <img src="Aktivitas.svg" alt="Icon" width="18" height="18"> Aktivitas Harian
-                </a>
-                <a href="#" class="menu-item">
-                    <img src="message.svg" alt="Icon" width="18" height="18"> Pesan & Komplain
-                </a>
-                <a href="#" class="menu-item">
-                    <img src="Setting.svg" alt="Icon" width="18" height="18"> Settings
-                </a>
+        <div class="sidebar-footer">
+            <div class="user-profile">
+                <div class="user-avatar">ZA</div>
+                <div class="user-info">
+                    <span class="user-name">Achmad Zaenudin</span>
+                    <span class="user-role">Corporate Communications</span>
+                </div>
             </div>
+            <a href="index.html" class="logout-btn">Keluar (Logout)</a>
         </div>
-    </div>
-
-    <div class="sidebar-footer">
-        <div class="user-profile">
-            <div class="user-avatar">ZA</div>
-            <div class="user-info">
-                <span class="user-name">Achmad Zaenudin</span>
-                <span class="user-role">Corporate Communications</span>
-            </div>
-        </div>
-        <a href="index.html" class="logout-btn">Keluar (Logout)</a>
-    </div>
-</aside>
+    </aside>
 
     <!-- KONTEN UTAMA -->
     <main class="main-content">
@@ -570,52 +567,49 @@
             lineChartInstance = new Chart(ctxLine, {
                 type: 'line',
                 data: { 
-                labels: [], 
-                datasets: [{ 
-                label: 'Total Kasus', 
-                data: [], 
-            
-                borderColor: '#FF8225',          
-            
-                backgroundColor: 'rgba(180, 63, 63, 0.15)', // Arsiran warna B43F3F transparan
-                borderWidth: 2.5,                // Sedikit tebal agar tegas
-                fill: true,                      // Mengaktifkan arsiran
-                tension: 0.4,                    // Membuat garis lebih melengkung mulus (smooth)
-                pointRadius: 0,                  // Menghilangkan titik bulatan pada setiap data agar bersih
-                pointHoverRadius: 6              // Titik hanya muncul saat di-hover
-            }] 
-        },
+                    labels: [], 
+                    datasets: [{ 
+                        label: 'Total Kasus', 
+                        data: [], 
+                        borderColor: '#FF8225',          
+                        backgroundColor: 'rgba(180, 63, 63, 0.15)',
+                        borderWidth: 2.5,                           
+                        fill: true,                                 
+                        tension: 0.4,                               
+                        pointRadius: 0,                             
+                        pointHoverRadius: 6                         
+                    }] 
+                },
                 options: { 
-                responsive: true, 
-                maintainAspectRatio: false, 
-                plugins: { legend: { display: false } }, 
-                scales: { 
-                x: { grid: { display: false }, ticks: { font: { size: 10 } } }, 
-                y: { grid: { color: '#f1f5f9' }, ticks: { font: { size: 10 } } } 
+                    responsive: true, 
+                    maintainAspectRatio: false, 
+                    plugins: { legend: { display: false } }, 
+                    scales: { 
+                        x: { grid: { display: false }, ticks: { font: { size: 10 } } }, 
+                        y: { grid: { color: '#f1f5f9' }, ticks: { font: { size: 10 } } } 
                     } 
                 }
-        });
+            });
             
             const ctxCategory = document.getElementById('donutCategory').getContext('2d');
             categoryChartInstance = new Chart(ctxCategory, {
                 type: 'doughnut',
                 data: { 
-                labels: ['Lalu Lintas', 'Fasilitas', 'Struk Digital'], 
-                datasets: [{ 
-                data: [0, 0, 0], 
-           
-                backgroundColor: ['#F8EDED', '#FF8225', '#B43F3F'],
-                borderWidth: 0,          // Ketebalan garis pemisah antar potongan donut
-                borderColor: '#ffffff'   // Warna garis pemisah antar potongan
+                    labels: ['Lalu Lintas', 'Fasilitas', 'Struk Digital'], 
+                    datasets: [{ 
+                        data: [0, 0, 0], 
+                        backgroundColor: ['#F8EDED', '#FF8225', '#B43F3F'],
+                        borderWidth: 0,          
+                        borderColor: '#ffffff'   
                     }] 
                 },
                 options: { 
-                responsive: true, 
-                maintainAspectRatio: false, 
-                plugins: { 
-                legend: { 
-                position: 'bottom', // Posisi keterangan (bisa 'top', 'bottom', 'left', 'right')
-                labels: { boxWidth: 10, font: { size: 10 } } 
+                    responsive: true, 
+                    maintainAspectRatio: false, 
+                    plugins: { 
+                        legend: { 
+                            position: 'bottom', 
+                            labels: { boxWidth: 10, font: { size: 10 } } 
                         } 
                     } 
                 }
@@ -625,28 +619,27 @@
             sentimentChartInstance = new Chart(ctxSentiment, {
                 type: 'doughnut',
                 data: { 
-                labels: ['Lalu Lintas', 'Fasilitas', 'Struk Digital'], 
-                datasets: [{ 
-                data: [0, 0, 0], 
-           
-                backgroundColor: ['#F8EDED', '#FF8225', '#B43F3F'],
-                borderWidth: 0,          // Ketebalan garis pemisah antar potongan donut
-                borderColor: '#ffffff'   // Warna garis pemisah antar potongan
+                    labels: ['Positif', 'Netral', 'Negatif'], 
+                    datasets: [{ 
+                        data: [0, 0, 0], 
+                        backgroundColor: ['#F8EDED', '#FF8225', '#B43F3F'],
+                        borderWidth: 0,          
+                        borderColor: '#ffffff'   
                     }] 
                 },
                 options: { 
-                responsive: true, 
-                maintainAspectRatio: false, 
-                plugins: { 
-                legend: { 
-                position: 'bottom', // Posisi keterangan (bisa 'top', 'bottom', 'left', 'right')
-                labels: { boxWidth: 10, font: { size: 10 } } 
+                    responsive: true, 
+                    maintainAspectRatio: false, 
+                    plugins: { 
+                        legend: { 
+                            position: 'bottom', 
+                            labels: { boxWidth: 10, font: { size: 10 } } 
                         } 
                     } 
                 }
             });
 
-            // Mengambil data secara otomatis dari file data.json GitHub Actions
+            // Mengambil data secara otomatis dari file data.json
             fetch('data.json')
                 .then(response => {
                     if (!response.ok) {
@@ -657,7 +650,16 @@
                 .then(data => {
                     console.log("Data berhasil dimuat:", data);
                     globalDataRows = data; 
-                    terapkanFilterTanggal(); // Jalankan filter otomatis sesuai tanggal default
+                    
+                    // Set default tanggal otomatis jika input kosong berdasarkan data JSON
+                    if (data.length > 0) {
+                        let dates = data.map(r => r.Tanggal).filter(Boolean).sort();
+                        if (dates.length > 0) {
+                            document.getElementById('startDate').value = dates[0];
+                            document.getElementById('endDate').value = dates[dates.length - 1];
+                            terapkanFilterTanggal();
+                        }
+                    }
                 })
                 .catch(error => {
                     console.error('Terjadi kesalahan saat memuat data.json:', error);
