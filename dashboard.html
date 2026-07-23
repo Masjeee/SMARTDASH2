@@ -359,35 +359,9 @@
             </div>
 
             <div class="menu-section">
-                <span class="menu-category">Application</span>
-                <ul class="sidebar-menu">
-                    <li><a href="#" class="active"><img src="Dashboard.svg" alt="Dashboard" class="menu-icon"><span>Dashboard</span></a></li>
-                    
-                    <!-- MENU TIMELINE & LOG DENGAN AKORDEON SUBMENU -->
-                    <li>
-                        <a href="javascript:void(0);" id="toggleTimeline">
-                            <img src="calendar.svg" alt="Timeline" class="menu-icon">
-                            <span>Timeline & Log</span>
-                        </a>
-                    </li>
-                    <div class="submenu-container" id="timelineSubmenu">
-                        <div class="filter-box">
-                            <label>Dari Tanggal</label>
-                            <input type="date" id="startDate" value="2026-02-01">
-                            <label>Sampai Tanggal</label>
-                            <input type="date" id="endDate" value="2026-04-23">
-                            <button class="filter-btn" onclick="terapkanFilterTanggal()">Terapkan Filter</button>
-                        </div>
-                    </div>
-
-                    <li><a href="#"><img src="Profil.svg" alt="Users" class="menu-icon"><span>Users Management</span></a></li>
-                </ul>
-            </div>
-
-               <div class="menu-section">
                 <div class="menu-label">Others</div>
-                <div class="menu-list">
-                    <a href="aktivitas.html" class="menu-item active">
+                <div class="menu-list" style="display: flex; flex-direction: column; gap: 4px;">
+                    <a href="aktivitas.html" class="menu-item">
                         <img src="Aktivitas.svg" alt="Icon" width="18" height="18"> Aktivitas Harian
                     </a>
                     <a href="#" class="menu-item">
