@@ -44739,6 +44739,42 @@
         "Klasifikasi_Manual": "Positive"
     },
     {
+        "Tanggal": "2026-08-24",
+        "Waktu": "09:03:11",
+        "Pengirim": 933697049794865,
+        "Isi Pesan": "iya sudah ada, terima kasih",
+        "Kategori": "Lain-lain",
+        "Topik Unik": "Keluhan Umum",
+        "Klasifikasi_Manual": "Positive"
+    },
+    {
+        "Tanggal": "2026-08-24",
+        "Waktu": "09:16:35",
+        "Pengirim": 3622214674597449,
+        "Isi Pesan": "selamat pagi ka",
+        "Kategori": "Lain-lain",
+        "Topik Unik": "Keluhan Umum",
+        "Klasifikasi_Manual": "Negative"
+    },
+    {
+        "Tanggal": "2026-08-24",
+        "Waktu": "09:16:42",
+        "Pengirim": 3622214674597449,
+        "Isi Pesan": "mau tanya",
+        "Kategori": "Lain-lain",
+        "Topik Unik": "Keluhan Umum",
+        "Klasifikasi_Manual": "Neutral"
+    },
+    {
+        "Tanggal": "2026-08-24",
+        "Waktu": "09:18:36",
+        "Pengirim": 3622214674597449,
+        "Isi Pesan": "distruk tertulis tarif 8.500 tapi kenapa terpotong saldonya 12.000 ya?",
+        "Kategori": "Lalu Lintas",
+        "Topik Unik": "Uang Elektronik",
+        "Klasifikasi_Manual": "Negative"
+    },
+    {
         "Tanggal": "2026-07-07",
         "Jam": "22:08:59",
         "Nama": "open_your_eyes88",
