@@ -45306,6 +45306,33 @@
         "Klasifikasi_Manual": "Positive"
     },
     {
+        "Tanggal": "2026-09-04",
+        "Waktu": "10:51:10",
+        "Pengirim": 933643836468171,
+        "Isi Pesan": "Halo kak",
+        "Kategori": "Lain-lain",
+        "Topik Unik": "Keluhan Umum",
+        "Klasifikasi_Manual": "Neutral"
+    },
+    {
+        "Tanggal": "2026-09-04",
+        "Waktu": "10:52:03",
+        "Pengirim": 933643836468171,
+        "Isi Pesan": "Aku mau tanya ini beberapa kali perjalanan di tol tamer ada struk yg di muncul di web , apakah sedang eror?",
+        "Kategori": "Struk Digital",
+        "Topik Unik": "Struk Digital",
+        "Klasifikasi_Manual": "Negative"
+    },
+    {
+        "Tanggal": "2026-09-04",
+        "Waktu": "10:58:22",
+        "Pengirim": 933643836468171,
+        "Isi Pesan": "Untuk nomor etoll 145201604633594\nGerbang Masuk Cikupa\nGerbang Keluar Serang Barat\nTanggal 31 Agustus 2026 dan 2 September 2026",
+        "Kategori": "Lalu Lintas",
+        "Topik Unik": "Uang Elektronik",
+        "Klasifikasi_Manual": "Neutral"
+    },
+    {
         "Tanggal": "2026-07-07",
         "Jam": "22:08:59",
         "Nama": "open_your_eyes88",
