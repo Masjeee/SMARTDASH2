@@ -45369,6 +45369,24 @@
         "Klasifikasi_Manual": "Positive"
     },
     {
+        "Tanggal": "2026-09-08",
+        "Waktu": "11:08:24",
+        "Pengirim": 1365586071654893,
+        "Isi Pesan": "Semoga sepanjang jalan tol dan bahu jalan tol Tangerang-Merak-Tangerang tidak ada lagi Truk yang Parkir.",
+        "Kategori": "Fasilitas",
+        "Topik Unik": "Keluhan Umum",
+        "Klasifikasi_Manual": "Negative"
+    },
+    {
+        "Tanggal": "2026-09-08",
+        "Waktu": "11:09:40",
+        "Pengirim": "astratoltamer",
+        "Isi Pesan": "Aamiin kak 🙏 Terimakasih atas doa dan dukungannya ya kak semoga masalah ini semua dapat terselesaikan dengan baik dan dengan segera mungkin 🙏✨",
+        "Kategori": "Lain-lain",
+        "Topik Unik": "Keluhan Umum",
+        "Klasifikasi_Manual": "Negative"
+    },
+    {
         "Tanggal": "2026-07-07",
         "Jam": "22:08:59",
         "Nama": "open_your_eyes88",
@@ -53136,6 +53154,16 @@
         "Kategori": "Lain-lain",
         "Topik Unik": "Keluhan Umum",
         "Klasifikasi_Manual": "Neutral",
+        "post_id": "No Post ID"
+    },
+    {
+        "Tanggal": "2026-09-08",
+        "Jam": "20:09:13",
+        "Nama": "arulsyahrul46",
+        "Isi Pesan": "Terima kasih informasinya min",
+        "Kategori": "Lain-lain",
+        "Topik Unik": "Keluhan Umum",
+        "Klasifikasi_Manual": "Positive",
         "post_id": "No Post ID"
     }
 ]
