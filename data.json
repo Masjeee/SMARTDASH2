@@ -45621,6 +45621,24 @@
         "Klasifikasi_Manual": "Neutral"
     },
     {
+        "Tanggal": "2026-09-16",
+        "Waktu": "12:43:52",
+        "Pengirim": "astratoltamer",
+        "Isi Pesan": "hallo kak mohon maaf atas apa yang kaka alami 🙏✨ kami bantu sampaikan ke tim terkait ya kak 🙏✨",
+        "Kategori": "Lain-lain",
+        "Topik Unik": "Keluhan Umum",
+        "Klasifikasi_Manual": "Neutral"
+    },
+    {
+        "Tanggal": "2026-09-16",
+        "Waktu": "14:27:56",
+        "Pengirim": "astratoltamer",
+        "Isi Pesan": "Hallo kak mohon maaf atas apa yang kaka alami dan terimakasih atas informasinya kami bantu sampaikan ke tim terkait yah kak 🙏✨",
+        "Kategori": "Lain-lain",
+        "Topik Unik": "Keluhan Umum",
+        "Klasifikasi_Manual": "Positive"
+    },
+    {
         "Tanggal": "2026-07-07",
         "Jam": "22:08:59",
         "Nama": "open_your_eyes88",
@@ -53437,6 +53455,16 @@
         "Isi Pesan": "“Jalan Pulang yang Penuh Cerita”\nSetiap hari saya menjalani rutinitas yang cukup panjang. Rumah saya di Depok, kantor di Cikupa, sedangkan wilayah kerja saya sampai Serang.\nHampir setiap perjalanan, Tol Tangerang–Merak menjadi bagian dari keseharian saya. Pagi berangkat mengejar pekerjaan, sore atau malam pulang dengan badan yang sudah lelah.\nKadang perjalanan terasa biasa saja. Tapi justru di sepanjang perjalanan itu saya banyak belajar. Tentang kesabaran menghadapi kemacetan, tentang tetap fokus ketika lelah, dan tentang rasa syukur karena masih diberi kesempatan untuk bekerja dan pulang bertemu keluarga.\nBagi saya, Tol Tangerang–Merak bukan sekadar jalan untuk pergi dari satu tempat ke tempat lain. Jalan ini sudah menjadi bagian dari cerita perjuangan saya sehari-hari—berangkat untuk mencari nafkah, menjalankan tanggung jawab, dan akhirnya pulang membawa harapan untuk keluarga.\nMungkin bagi orang lain perjalanan Depok–Cikupa–Serang hanyalah rutinitas. Tapi bagi saya, setiap kilometernya punya cerita.",
         "Kategori": "Lalu Lintas",
         "Topik Unik": "Kepadatan Lalin",
+        "Klasifikasi_Manual": "Negative",
+        "post_id": "No Post ID"
+    },
+    {
+        "Tanggal": "2026-09-16",
+        "Jam": "15:47:59",
+        "Nama": "cath_fany",
+        "Isi Pesan": "Selamat Hari Ozon Sedunia",
+        "Kategori": "Lain-lain",
+        "Topik Unik": "Keluhan Umum",
         "Klasifikasi_Manual": "Negative",
         "post_id": "No Post ID"
     }
