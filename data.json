@@ -45648,6 +45648,15 @@
         "Klasifikasi_Manual": "Negative"
     },
     {
+        "Tanggal": "2026-09-19",
+        "Waktu": "07:53:06",
+        "Pengirim": 2008729909761229,
+        "Isi Pesan": "Terima kasih Min",
+        "Kategori": "Lain-lain",
+        "Topik Unik": "Keluhan Umum",
+        "Klasifikasi_Manual": "Positive"
+    },
+    {
         "Tanggal": "2026-07-07",
         "Jam": "22:08:59",
         "Nama": "open_your_eyes88",
@@ -53495,6 +53504,16 @@
         "Kategori": "Lain-lain",
         "Topik Unik": "Keluhan Umum",
         "Klasifikasi_Manual": "Neutral",
+        "post_id": "No Post ID"
+    },
+    {
+        "Tanggal": "2026-09-19",
+        "Jam": "08:34:40",
+        "Nama": "hilmankurnia",
+        "Isi Pesan": "Pak masih banyak truk yg berhenti di bahu jalan flyover dari pintu toll baltim ke arah toll cikupa. Tolong di tindak, membahayakan",
+        "Kategori": "Lalu Lintas",
+        "Topik Unik": "Keluhan Umum",
+        "Klasifikasi_Manual": "Negative",
         "post_id": "No Post ID"
     }
 ]
