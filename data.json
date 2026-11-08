@@ -49437,6 +49437,33 @@
         "Klasifikasi_Manual": "Neutral"
     },
     {
+        "Tanggal": "2026-11-08",
+        "Waktu": "12:55:17",
+        "Pengirim": 1906994706939348,
+        "Isi Pesan": "Hallo kaa",
+        "Kategori": "Lain-lain",
+        "Topik Unik": "Keluhan Umum",
+        "Klasifikasi_Manual": "Neutral"
+    },
+    {
+        "Tanggal": "2026-11-08",
+        "Waktu": "12:56:02",
+        "Pengirim": 1906994706939348,
+        "Isi Pesan": "Saya kemarin ada kendala terpotong pembayaran dengan nominal tidak seharusnya, itu bagaimana yaa kaa?",
+        "Kategori": "Lain-lain",
+        "Topik Unik": "Keluhan Umum",
+        "Klasifikasi_Manual": "Negative"
+    },
+    {
+        "Tanggal": "2026-11-08",
+        "Waktu": "17:34:31",
+        "Pengirim": 1450498723179879,
+        "Isi Pesan": "hallo kak apakah sudah ada informasi",
+        "Kategori": "Lain-lain",
+        "Topik Unik": "Keluhan Umum",
+        "Klasifikasi_Manual": "Neutral"
+    },
+    {
         "Tanggal": "2026-07-07",
         "Jam": "22:08:59",
         "Nama": "open_your_eyes88",
@@ -58894,6 +58921,16 @@
         "Kategori": "Fasilitas",
         "Topik Unik": "Keluhan Umum",
         "Klasifikasi_Manual": "Negative",
+        "post_id": "No Post ID"
+    },
+    {
+        "Tanggal": "2026-11-08",
+        "Jam": "12:03:49",
+        "Nama": "acilraihan",
+        "Isi Pesan": "@astratoltamer gimana ceritanya pekerjaan udah dimulai tp gatau kapan rencana selesainya? Ini proyek abal-abal atau gimana masa gaada RAB dan Schedule pengerjaannya",
+        "Kategori": "Lain-lain",
+        "Topik Unik": "Keluhan Umum",
+        "Klasifikasi_Manual": "Neutral",
         "post_id": "No Post ID"
     }
 ]
