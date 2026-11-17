@@ -50436,6 +50436,24 @@
         "Klasifikasi_Manual": "Neutral"
     },
     {
+        "Tanggal": "2026-11-17",
+        "Waktu": "08:33:50",
+        "Pengirim": 1130703143030134,
+        "Isi Pesan": "Hallo kak",
+        "Kategori": "Lain-lain",
+        "Topik Unik": "Keluhan Umum",
+        "Klasifikasi_Manual": "Neutral"
+    },
+    {
+        "Tanggal": "2026-11-17",
+        "Waktu": "08:34:21",
+        "Pengirim": 1130703143030134,
+        "Isi Pesan": "Saya terdapt kendala struk tidak keluar setelah di input di astratol. Apakah ada solusi",
+        "Kategori": "Struk Digital",
+        "Topik Unik": "Struk Digital",
+        "Klasifikasi_Manual": "Negative"
+    },
+    {
         "Tanggal": "2026-07-07",
         "Jam": "22:08:59",
         "Nama": "open_your_eyes88",
@@ -60193,6 +60211,16 @@
         "Kategori": "Lain-lain",
         "Topik Unik": "Keluhan Umum",
         "Klasifikasi_Manual": "Neutral",
+        "post_id": "No Post ID"
+    },
+    {
+        "Tanggal": "2026-11-16",
+        "Jam": "22:32:52",
+        "Nama": "arfat_cs8",
+        "Isi Pesan": "Woyy yg bener ajah kalo benerin jalan  yg rusak yg mana yg du perbaiki yg mana, udh mah jalur 3 di kuasain mobil dum",
+        "Kategori": "Lain-lain",
+        "Topik Unik": "Keluhan Umum",
+        "Klasifikasi_Manual": "Negative",
         "post_id": "No Post ID"
     }
 ]
